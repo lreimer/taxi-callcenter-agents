@@ -1,0 +1,9 @@
+[project]
+name = "taxi-callcenter-agents"
+version = "0.1.0"
+description = "Intelligent taxi call center agent implementations that can process a taxi order"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk>=0.5.0",
+]
