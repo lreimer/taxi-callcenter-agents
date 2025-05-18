@@ -10,6 +10,9 @@ This demo repository uses Google ADK for now.
 uv init
 uv add google-adk
 uv tool install google-adk
+
+adk web
+adk run weather_time_agent
 ```
 
 ## Maintainer
