@@ -1,4 +1,5 @@
 import dotenv
+import os
 
 from google.adk.agents import Agent
 from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset
@@ -9,9 +10,14 @@ dotenv.load_dotenv()
 async def get_tools_async():
     """Gets tools from the Taxi MCP Server."""
 
+    # get the URL from the environment variable
+    mcp_server_url = os.getenv("MCP_SERVER_URL")
+    if mcp_server_url is None:
+        mcp_server_url = "http://localhost:8001/sse"
+
     tools, exit_stack = await MCPToolset.from_server(
         connection_params=SseServerParams(
-            url="http://localhost:8001/sse",
+            url=mcp_server_url,
         )
     )
 
