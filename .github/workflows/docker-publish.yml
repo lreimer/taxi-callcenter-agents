@@ -3,6 +3,8 @@ name: Docker Publish MCP Server
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'taxi-mcp-server/**'
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
 
