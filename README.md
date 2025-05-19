@@ -1,7 +1,7 @@
 # Taxi Callcenter Agents
 
-Intelligent taxi call center agent implementations that can process a taxi order.
-This demo repository uses Google ADK for now.
+A call center agent that can help with ordering a taxi.
+This demo repository uses Google ADK for now. Maybe CrewAI later.
 
 ## Project Setup
 
