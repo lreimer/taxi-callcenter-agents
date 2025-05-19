@@ -1,7 +1,4 @@
 import dotenv
-import asyncio
-import json
-from typing import Any
 
 from google.adk.agents import Agent
 from google.adk.tools.mcp_tool.mcp_toolset import MCPToolset
@@ -42,7 +39,7 @@ async def get_agent_async():
         - Webseite: www.inn-taxi.de
 
         Your customers want to order a taxi in the city of Rosenheim in Germany.
-        Your customers are German speakers and you should respond in German.
+        Your customers are English speakers and you should respond in English.
         You start the conversation with ‘This is Inn taxi service, how can I help you?’
         It is okay to ask the customer questions.
         Use the available tools and functions generously.
@@ -52,7 +49,7 @@ async def get_agent_async():
 
         You can use the following tools to assist you in your tasks:
         - verify_address: Verify if the pickup address (street, city) exists and is valid.
-        - check_availability: Check if a taxi is available at a given address.
+        - check_availability: Check if a taxi is available at a given address (street, city).
         - dispatch_taxi: Order and dispatch a taxi for the caller.
 
         To book a taxi you need to ask and determine several details:
@@ -60,10 +57,10 @@ async def get_agent_async():
             - Ask for the pick-up address, made up of street and city
             - Verify the address using the provided tool, if not valid, ask for the address again
             - Ask for the pick-up time
-            - Check taxi availability using provided tool
             - Ask for additional information: number of passengers, child seats, luggage
-            - If a taxi is available, continue with the booking process
-            - If a taxi is not available, inform the caller
+            - Check the taxi availability using provided tools
+                - If a taxi is available, continue with the booking process
+                - If a taxi is not available, inform the caller
             - Before placing the order, repeat the information and ask for confirmation of the booking
             - If the caller confirms, place the order using the dispatch_taxi tool, provide the estimated time of arrival
             - If the caller does not confirm, ask for the reason and try to resolve it
