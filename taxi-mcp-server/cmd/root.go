@@ -65,8 +65,8 @@ func SetVersion(v string) {
 
 func init() {
 	rootCmd.Flags().StringVarP(&transport, "transport", "t", "stdio", "Transport to use. Valid options: stdio, sse")
-	rootCmd.Flags().StringVarP(&baseURL, "url", "u", "http://localhost:8000", "The public SSE base URL to use.")
-	rootCmd.Flags().StringVarP(&port, "port", "p", "8000", "The local SSE server port to use.")
+	rootCmd.Flags().StringVarP(&baseURL, "url", "u", "http://localhost:8001", "The public SSE base URL to use.")
+	rootCmd.Flags().StringVarP(&port, "port", "p", "8001", "The local SSE server port to use.")
 
 	// override the default port with ENV if specified
 	// use port parameter as default

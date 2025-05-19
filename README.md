@@ -45,7 +45,7 @@ npx @modelcontextprotocol/inspector go run main.go
 
 # as SSE server using 
 go run main.go --transport sse
-npx @modelcontextprotocol/inspector npx mcp-remote@next http://localhost:8000/sse
+npx @modelcontextprotocol/inspector npx mcp-remote@next http://localhost:8001/sse
 npx @modelcontextprotocol/inspector
 ```
 

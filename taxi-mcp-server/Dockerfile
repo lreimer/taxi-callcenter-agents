@@ -11,6 +11,6 @@ FROM gcr.io/distroless/static-debian12
 
 COPY --from=builder /app/taxi-mcp-server /taxi-mcp-server
 
-EXPOSE 8000
+EXPOSE 8001
 ENTRYPOINT [ "/taxi-mcp-server" ]
-CMD ["-t", "sse", "-p", "8000"]
+CMD ["-t", "sse", "-p", "8001"]
