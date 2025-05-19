@@ -11,8 +11,11 @@ uv init
 uv add google-adk
 uv tool install google-adk
 
+# run and open the demo console
+# choose the simple_taxi_agent
+# the agent only supports voice
 adk web
-adk run weather_time_agent
+open http://localhost:8000
 ```
 
 ## Taxi MCP Server
