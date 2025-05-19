@@ -1,0 +1,38 @@
+name: Build and Test MCP Server
+
+on:
+  push:
+    branches: [ "main" ]  
+    paths:
+      - 'taxi-mcp-server/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'taxi-mcp-server/**'
+
+permissions:
+  contents: read
+
+jobs:
+  goreleaser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+      
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6        
+        with:
+          workdir: ./taxi-mcp-server
+          distribution: goreleaser
+          # 'latest', 'nightly', or a semver
+          version: "latest"
+          args: build --snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
