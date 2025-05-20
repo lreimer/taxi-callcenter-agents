@@ -8,25 +8,24 @@ import (
 	"github.com/mark3labs/mcp-go/server"
 )
 
-func dispatchTaxi(s *server.MCPServer) {
-	// create a new MCP tool for Taxi availability
-	projectsTool := mcp.NewTool("dispatch_taxi",
-		mcp.WithDescription("Dispatch a taxi for given passenger details and pickup location (street, city)."),
+func orderTaxi(s *server.MCPServer) {
+	projectsTool := mcp.NewTool("order_taxi",
+		mcp.WithDescription("Order a taxi for given passenger details and pickup location (street, city)."),
 		mcp.WithOpenWorldHintAnnotation(true),
 		mcp.WithString("passenger_name",
-			mcp.Description("The name of the passenger to dispatch a taxi for"),
+			mcp.Description("The name of the passenger to order a taxi for"),
 			mcp.Required(),
 		),
 		mcp.WithString("passenger_phone",
-			mcp.Description("The phone number of the passenger to dispatch a taxi for"),
+			mcp.Description("The phone number of the passenger to order a taxi for"),
 			mcp.Required(),
 		),
 		mcp.WithString("street",
-			mcp.Description("The name and house number to check for availability"),
+			mcp.Description("The name and house number to pick up the passenger"),
 			mcp.Required(),
 		),
 		mcp.WithString("city",
-			mcp.Description("The name of the city to check for availability"),
+			mcp.Description("The name of the city to pick up the passenger"),
 			mcp.Required(),
 		),
 		mcp.WithString("pickup_time",
@@ -49,10 +48,10 @@ func dispatchTaxi(s *server.MCPServer) {
 		pickupTime := request.Params.Arguments["pickup_time"].(string)
 		pickupDetails := request.Params.Arguments["pickup_details"].(string)
 
-		log.Printf("Dispatching taxi for %s (%s) at %s, %s\n", passengerName, passengerPhone, street, city)
+		log.Printf("ordering taxi for %s (%s) at %s, %s\n", passengerName, passengerPhone, street, city)
 		log.Printf("Pickup time: %s\n", pickupTime)
 		log.Printf("Pickup details: %s\n", pickupDetails)
 
-		return mcp.NewToolResultText("Taxi dispatched successfully!"), nil
+		return mcp.NewToolResultText("Taxi ordered successfully!"), nil
 	})
 }
