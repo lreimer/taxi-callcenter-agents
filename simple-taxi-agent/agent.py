@@ -68,8 +68,10 @@ async def get_agent_async():
                 - If a taxi is available, continue with the booking process
                 - If a taxi is not available, inform the caller
             - Before placing the order, repeat the information and ask for confirmation of the booking
-            - If the caller confirms, place the order using the dispatch_taxi tool, provide the estimated time of arrival
+            - If the caller confirms, place the order and dispatch the taxi using provided tool
             - If the caller does not confirm, ask for the reason and try to resolve it
+            - After successful dispatch, provide the estimated time of arrival
+            - Close the conversion friendly
         """,
         tools=tools,
     )

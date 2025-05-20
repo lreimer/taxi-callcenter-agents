@@ -52,6 +52,42 @@ npx @modelcontextprotocol/inspector npx mcp-remote@next http://localhost:8001/ss
 npx @modelcontextprotocol/inspector
 ```
 
+## Cloud Run Deployment
+
+```bash
+# make sure you enabled these Google APIs
+gcloud services enable cloudbuild.googleapis.com artifactregistry.googleapis.com
+gcloud services enable run.googleapis.com 
+
+# deploy the MCP server first
+gcloud run deploy taxi-mcp-server --source=taxi-mcp-server/ \
+  --region=europe-north1 \
+  --port=8001 --allow-unauthenticated \
+  --set-env-vars=BASE_URL=https://taxi-mcp-server-343509396461.europe-north1.run.app
+
+# now we deploy the agent with UI
+export GOOGLE_API_KEY=<insert here>
+
+# we use plain gcloud CLI to perform the deployment
+gcloud run deploy simple-taxi-agent --source=. \
+  --region=europe-north1 \
+  --port=8000 --allow-unauthenticated \
+  --set-env-vars=MCP_SERVER_URL=https://taxi-mcp-server-343509396461.europe-north1.run.app/sse,GOOGLE_API_KEY=$GOOGLE_API_KEY,GOOGLE_GENAI_USE_VERTEXAI=FALSE
+
+# there is a `adk deploy cloud_run command`
+# however, it lacks the possibility to provide ENV variables
+# also, the --with_ui option does not seem to have effect
+
+# if you need to debug have a look at the logs
+gcloud run services logs read taxi-mcp-server --region=europe-north1
+gcloud run services logs read simple-taxi-agent --region=europe-north1
+
+# use these commands to delete the workloads
+gcloud run services list
+gcloud run services delete taxi-mcp-server --async --region=europe-north1
+gcloud run services delete simple-taxi-agent --async --region=europe-north1
+```
+
 ## Maintainer
 
 M.-Leander Reimer (@lreimer), <mario-leander.reimer@qaware.de>
